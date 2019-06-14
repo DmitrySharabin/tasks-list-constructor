@@ -1,0 +1,81 @@
+/* Полезная статья про вёрстку столбцов: https://css-tricks.com/arranging-elements-top-bottom-instead-left-right-float/ */
+
+body {
+    background-color: #f7fafc;
+}
+
+main {
+    max-width: 70em;
+    margin: 0 auto;
+}
+
+[property="stage"] {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-column-gap: 1em;
+    grid-auto-flow: dense;
+    align-items: start;
+}
+
+h2 {
+    color: hsl(179, 74%, 36%);
+}
+
+[property="plan"] {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+}
+
+[property="plan"] > h2 {
+    padding: 0.5em 1em;
+    background-color: hsl(179, 74%, 36%);
+    color: white;
+    grid-column: span 2;
+}
+
+[property="plan"] > code {
+    grid-column: span 2;
+}
+
+[property="plan"] [property*="column"]::before {
+    display: block;
+    content: attr(data-count);
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 120%;
+    color: hsl(179, 74%, 36%);
+}
+
+[property="task"] {
+    grid-column: 1;
+    margin: 0;
+    padding: 0.5em;
+    border: 2px solid  hsl(179, 74%, 36%);
+    border-radius: 0.5em;
+    background-color: #e6fffa;
+}
+
+[property="task"]:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+[property="task"] > aside {
+    margin-top: 0.5em;
+}
+
+[property="id"] {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+button.mv-add,
+button.mv-delete {
+    display: none !important;
+}
+
+button.mv-drag-handle {
+    border-radius: 0.3em !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
